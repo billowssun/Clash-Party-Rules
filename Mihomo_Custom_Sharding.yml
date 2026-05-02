@@ -7,4 +7,15 @@
   - DOMAIN-SUFFIX,pddshop.cc,DIRECT #pikpak直连
   - IP-CIDR,72.18.82.21/32,DIRECT,no-resolve
   - IP-CIDR,66.103.211.39/32,DIRECT,no-resolve
-  
+  - DOMAIN-SUFFIX,ubisoft.com,REJECT
+  - DOMAIN-SUFFIX,ubisoftconnect.com,REJECT
+  - DOMAIN-SUFFIX,uplay.com,REJECT
+  - DOMAIN-SUFFIX,ubi.com,REJECT
+
+  - DOMAIN,ubisoft-uplay-savegames.s3.amazonaws.com,REJECT
+  - DOMAIN,ubisoft-orbit-savegames.s3.amazonaws.com,REJECT
+  - DOMAIN,ubistatic3-a.akamaihd.net,REJECT
+  - DOMAIN,uplaypc-s-ubisoft.cdn.ubi.com,REJECT
+
+  - DOMAIN-KEYWORD,ubisoft,REJECT
+  - DOMAIN-KEYWORD,uplay,REJECT
