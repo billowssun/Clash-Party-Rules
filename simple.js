@@ -24,7 +24,9 @@ function main(config) {
 
   const nodeGroup = {
     name: "节点选择",
-    type: "select"
+    type: "select",
+    icon:
+      "https://github.com/shindgewongxj/WHATSINStash/raw/main/icon/applesafari.png"
   };
 
   if (nodeNames.length > 0) {
@@ -146,10 +148,7 @@ function main(config) {
     }
   };
 
-nodeGroup.icon =
-  "https://github.com/shindgewongxj/WHATSINStash/raw/main/icon/applesafari.png";
-
-config["proxy-groups"] = [
+  config["proxy-groups"] = [
   nodeGroup,
   {
     name: "其他流量",
@@ -176,6 +175,26 @@ config["proxy-groups"] = [
     AD: classicalProvider(
       "./rules/AD.list",
       "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Reject.list"
+    ),
+
+    Direct: classicalProvider(
+      "./rules/Direct.list",
+      "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Direct.list"
+    ),
+
+    ChinaDomain: classicalProvider(
+      "./rules/ChinaDomain.list",
+      "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/ChinaDomain.list"
+    ),
+
+    ChinaIP: classicalProvider(
+      "./rules/ChinaIP.list",
+      "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/ChinaIP.list"
+    ),
+
+    ProxyGFW: classicalProvider(
+      "./rules/ProxyGFW.list",
+      "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/ProxyGFW.list"
     ),
 
     Apple: classicalProvider(
@@ -254,41 +273,41 @@ config["proxy-groups"] = [
     )
   };
 
-  ```
- config.rules = [
-  "RULE-SET,AD,REJECT",
+   config.rules = [
+    "RULE-SET,AD,REJECT",
 
-  // 明确需要直连
-  "RULE-SET,Direct,DIRECT",
-  "RULE-SET,ChinaDomain,DIRECT",
+    "RULE-SET,Direct,DIRECT",
+    "RULE-SET,ChinaDomain,DIRECT",
 
-  // 明确需要代理
-  "RULE-SET,AI,节点选择",
-  "RULE-SET,YouTube,节点选择",
-  "RULE-SET,Google,节点选择",
-  "RULE-SET,Telegram,节点选择",
-  "RULE-SET,Twitter,节点选择",
-  "RULE-SET,Emby,节点选择",
-  "RULE-SET,Spotify,节点选择",
-  "RULE-SET,Bahamut,节点选择",
-  "RULE-SET,Netflix,节点选择",
-  "RULE-SET,Disney,节点选择",
-  "RULE-SET,PrimeVideo,节点选择",
-  "RULE-SET,HBO,节点选择",
+    "RULE-SET,AI,节点选择",
+    "RULE-SET,Apple,节点选择",
+    "RULE-SET,YouTube,节点选择",
+    "RULE-SET,Google,节点选择",
+    "RULE-SET,Telegram,节点选择",
+    "RULE-SET,Twitter,节点选择",
+    "RULE-SET,Steam,节点选择",
+    "RULE-SET,Epic,节点选择",
+    "RULE-SET,Emby,节点选择",
+    "RULE-SET,Spotify,节点选择",
+    "RULE-SET,Bahamut,节点选择",
+    "RULE-SET,Netflix,节点选择",
+    "RULE-SET,Disney,节点选择",
+    "RULE-SET,PrimeVideo,节点选择",
+    "RULE-SET,HBO,节点选择",
 
-  "GEOSITE,onedrive,节点选择",
-  "GEOSITE,github,节点选择",
-  "GEOSITE,gfw,节点选择",
+    "GEOSITE,onedrive,节点选择",
+    "GEOSITE,github,节点选择",
+    "GEOSITE,microsoft,节点选择",
+    "GEOSITE,gfw,节点选择",
 
-  // 第三方维护的代理域名集合
-  "RULE-SET,ProxyGFW,节点选择",
+    "RULE-SET,ProxyGFW,节点选择",
 
-  // 国内 IP 直连
-  "RULE-SET,ChinaIP,DIRECT,no-resolve",
-  "GEOIP,private,DIRECT,no-resolve",
-  "GEOIP,cn,DIRECT,no-resolve",
+    "RULE-SET,ChinaIP,DIRECT",
+    "GEOIP,private,DIRECT",
+    "GEOIP,cn,DIRECT",
 
-  // 所有仍未识别的流量默认直连
-  "MATCH,其他流量"
-];
-```
+    "MATCH,其他流量"
+  ];
+
+  return config;
+}
