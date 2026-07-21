@@ -254,35 +254,41 @@ config["proxy-groups"] = [
     )
   };
 
-  config.rules = [
-    "RULE-SET,AD,REJECT",
+  ```
+config.rules = [
+  "RULE-SET,AD,REJECT",
 
-    "RULE-SET,AI,节点选择",
-    "RULE-SET,Apple,节点选择",
-    "RULE-SET,YouTube,节点选择",
-    "RULE-SET,Google,节点选择",
-    "RULE-SET,Telegram,节点选择",
-    "RULE-SET,Twitter,节点选择",
-    "RULE-SET,Steam,节点选择",
-    "RULE-SET,Epic,节点选择",
-    "RULE-SET,Emby,节点选择",
-    "RULE-SET,Spotify,节点选择",
-    "RULE-SET,Bahamut,节点选择",
-    "RULE-SET,Netflix,节点选择",
-    "RULE-SET,Disney,节点选择",
-    "RULE-SET,PrimeVideo,节点选择",
-    "RULE-SET,HBO,节点选择",
+  // 明确需要直连
+  "RULE-SET,Direct,DIRECT",
+  "RULE-SET,ChinaDomain,DIRECT",
 
-    "GEOSITE,onedrive,节点选择",
-    "GEOSITE,github,节点选择",
-    "GEOSITE,microsoft,节点选择",
-    "GEOSITE,gfw,节点选择",
+  // 明确需要代理
+  "RULE-SET,AI,节点选择",
+  "RULE-SET,YouTube,节点选择",
+  "RULE-SET,Google,节点选择",
+  "RULE-SET,Telegram,节点选择",
+  "RULE-SET,Twitter,节点选择",
+  "RULE-SET,Emby,节点选择",
+  "RULE-SET,Spotify,节点选择",
+  "RULE-SET,Bahamut,节点选择",
+  "RULE-SET,Netflix,节点选择",
+  "RULE-SET,Disney,节点选择",
+  "RULE-SET,PrimeVideo,节点选择",
+  "RULE-SET,HBO,节点选择",
 
-    "GEOIP,private,DIRECT,no-resolve",
-    "GEOIP,cn,DIRECT,no-resolve",
+  "GEOSITE,onedrive,节点选择",
+  "GEOSITE,github,节点选择",
+  "GEOSITE,gfw,节点选择",
 
-    "MATCH,其他流量"
-  ];
+  // 第三方维护的代理域名集合
+  "RULE-SET,ProxyGFW,节点选择",
 
-  return config;
-}
+  // 国内 IP 直连
+  "RULE-SET,ChinaIP,DIRECT,no-resolve",
+  "GEOIP,private,DIRECT,no-resolve",
+  "GEOIP,cn,DIRECT,no-resolve",
+
+  // 所有仍未识别的流量默认直连
+  "MATCH,其他流量"
+];
+```
