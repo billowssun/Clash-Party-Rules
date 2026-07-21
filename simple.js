@@ -255,7 +255,7 @@ config["proxy-groups"] = [
   };
 
   ```
-config.rules = [
+ config.rules = [
   "RULE-SET,AD,REJECT",
 
   // 明确需要直连
