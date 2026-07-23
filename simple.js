@@ -1,14 +1,11 @@
 function main(config) {
-  const googleIPv6Name = "谷歌IPv6";
-
   const specialNames = new Set([
     "DIRECT",
     "REJECT",
     "REJECT-DROP",
     "PASS",
     "COMPATIBLE",
-    "GLOBAL",
-    googleIPv6Name
+    "GLOBAL"
   ]);
 
   const nodeNames = [
@@ -45,7 +42,7 @@ function main(config) {
   config["tcp-concurrent"] = true;
   config["allow-lan"] = true;
   config["bind-address"] = "*";
-  config.ipv6 = true;
+  config.ipv6 = false;
   config["log-level"] = "info";
   config["unified-delay"] = true;
   config["global-client-fingerprint"] = "chrome";
@@ -101,10 +98,9 @@ function main(config) {
   config.dns = {
     enable: true,
     listen: ":1053",
-    ipv6: true,
+    ipv6: false,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
-    "fake-ip-range6": "fdfe:dcba:9876::1/64",
     "cache-algorithm": "arc",
 
     "fake-ip-filter": [
@@ -130,18 +126,6 @@ function main(config) {
       "https://doh.pub/dns-query"
     ],
 
-    "nameserver-policy": {
-      "geosite:google": [
-        "https://1.1.1.1/dns-query#节点选择",
-        "https://8.8.8.8/dns-query#节点选择"
-      ],
-
-      "geosite:youtube": [
-        "https://1.1.1.1/dns-query#节点选择",
-        "https://8.8.8.8/dns-query#节点选择"
-      ]
-    },
-
     nameserver: [
       "https://dns.alidns.com/dns-query",
       "https://doh.pub/dns-query"
@@ -160,43 +144,23 @@ function main(config) {
         "0.0.0.0/32",
         "127.0.0.1/32",
         "240.0.0.0/4"
-      ],
-      domain: [
-        "+.google.com",
-        "+.googleapis.com",
-        "+.gstatic.com",
-        "+.youtube.com",
-        "+.googlevideo.com",
-        "+.ytimg.com"
       ]
     }
   };
 
-  config.proxies = (config.proxies || []).filter(
-    (proxy) => proxy && proxy.name !== googleIPv6Name
-  );
-
-  config.proxies.push({
-    name: googleIPv6Name,
-    type: "direct",
-    udp: true,
-    "ip-version": "ipv6-prefer",
-    "dialer-proxy": "节点选择"
-  });
-
   config["proxy-groups"] = [
-    nodeGroup,
-    {
-      name: "其他流量",
-      type: "select",
-      proxies: [
-        "节点选择",
-        "DIRECT"
-      ],
-      icon:
-        "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png"
-    }
-  ];
+  nodeGroup,
+  {
+    name: "其他流量",
+    type: "select",
+    proxies: [
+      "节点选择",
+      "DIRECT"
+    ],
+    icon:
+      "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png"
+  }
+];
 
   const classicalProvider = (path, url) => ({
     type: "http",
@@ -309,19 +273,16 @@ function main(config) {
     )
   };
 
-  config.rules = [
+   config.rules = [
     "RULE-SET,AD,REJECT",
 
     "RULE-SET,Direct,DIRECT",
     "RULE-SET,ChinaDomain,DIRECT",
 
-    "RULE-SET,YouTube,谷歌IPv6",
-    "RULE-SET,Google,谷歌IPv6",
-    "GEOSITE,google,谷歌IPv6",
-    "GEOSITE,youtube,谷歌IPv6",
-
     "RULE-SET,AI,节点选择",
     "RULE-SET,Apple,节点选择",
+    "RULE-SET,YouTube,节点选择",
+    "RULE-SET,Google,节点选择",
     "RULE-SET,Telegram,节点选择",
     "RULE-SET,Twitter,节点选择",
     "RULE-SET,Steam,节点选择",
