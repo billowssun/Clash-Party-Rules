@@ -4,7 +4,8 @@
   - DOMAIN-SUFFIX,steamcontent.com,DIRECT #steam下载直连
   - DOMAIN-SUFFIX,adobe.io,REJECT # 阻止Adobe软件联网
   - DOMAIN-SUFFIX,mypikpak.com,DIRECT #pikpak直连
-  - DOMAIN-SUFFIX,pddshop.cc,DIRECT #pikpak直连
+  - DOMAIN-SUFFIX,pddshop.cc,DIRECT 
+  - DOMAIN-SUFFIX,focus.us.kg,DIRECT 
 
   - DOMAIN-SUFFIX,ubisoft.com,REJECT
   - DOMAIN-SUFFIX,ubisoftconnect.com,REJECT
