@@ -6,6 +6,7 @@
   - DOMAIN-SUFFIX,mypikpak.com,DIRECT #pikpak直连
   - DOMAIN-SUFFIX,pddshop.cc,DIRECT 
   - DOMAIN-SUFFIX,focus.us.kg,DIRECT 
+  - DOMAIN-SUFFIX,mediaplus.life,DIRECT 
 
   - DOMAIN-SUFFIX,ubisoft.com,REJECT
   - DOMAIN-SUFFIX,ubisoftconnect.com,REJECT
