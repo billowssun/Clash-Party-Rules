@@ -1,4 +1,39 @@
 +rules:
+  # Claude / Anthropic 核心域名
+  - DOMAIN-SUFFIX,anthropic.com,节点选择
+  - DOMAIN-SUFFIX,claude.ai,节点选择
+  - DOMAIN-SUFFIX,claude.com,节点选择
+  - DOMAIN-SUFFIX,clau.de,节点选择
+  - DOMAIN-SUFFIX,claudemcpclient.com,节点选择
+  - DOMAIN-SUFFIX,claudemcpcontent.com,节点选择
+  - DOMAIN-SUFFIX,claudeusercontent.com,节点选择
+
+  # CDN 和静态资源
+  - DOMAIN,servd-anthropic-website.b-cdn.net,节点选择
+  - DOMAIN,anthropic.com.cdn.cloudflare.net,节点选择
+
+  # 认证 / 内容
+  - DOMAIN,anthropic.auth0.com,节点选择
+  - DOMAIN,anthropic-com.ghost.io,节点选择
+
+  # 监控和遥测
+  - DOMAIN-SUFFIX,sentry.io,节点选择
+  - DOMAIN-SUFFIX,statsigapi.net,节点选择
+  - DOMAIN,browser-intake-us5-datadoghq.com,节点选择
+  - DOMAIN-KEYWORD,datadog,节点选择
+  - DOMAIN-KEYWORD,sift,节点选择
+
+  # 客服 / 第三方 Widget
+  - DOMAIN-SUFFIX,intercom.io,节点选择
+  - DOMAIN-SUFFIX,intercomcdn.com,节点选择
+  - DOMAIN,cdn.usefathom.com,节点选择
+
+  # IP 段 / ASN 兜底
+  - IP-CIDR,160.79.104.0/21,节点选择,no-resolve
+  - IP-CIDR6,2607:6bc0::/32,节点选择,no-resolve
+  - IP-ASN,399358,节点选择,no-resolve
+
+  # 自定义
   - DOMAIN-SUFFIX,tailscale.com,DIRECT # tailscale直连
   - PROCESS-NAME,wechat.exe,DIRECT # Wechat直连
   - DOMAIN-SUFFIX,steamcontent.com,DIRECT #steam下载直连
@@ -23,5 +58,6 @@
 
   - IP-CIDR,72.18.82.21/32,DIRECT,no-resolve
   - IP-CIDR,66.103.211.39/32,DIRECT,no-resolve
-  - IP-CIDR,178.239.117.46/32,DIRECT,no-resolve
+  - IP-CIDR,178.239.117.46/32,节点选择,no-resolve
   - IP-CIDR,124.243.145.100/32,DIRECT,no-resolve
+
